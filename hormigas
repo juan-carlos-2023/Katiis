@@ -1,0 +1,35 @@
+import java.util.Arrays;
+import java.util.Scanner;
+
+public class AntsOnAStick {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int cases = scanner.nextInt();
+        
+        for (int i = 0; i < cases; i++) {
+            int length = scanner.nextInt();
+            int ants = scanner.nextInt();
+            int[] positions = new int[ants];
+            
+            for (int j = 0; j < ants; j++) {
+                positions[j] = scanner.nextInt();
+            }
+            
+            Arrays.sort(positions);
+            
+            int earliestTime = 0;
+            for (int j = 0; j < ants; j++) {
+                earliestTime = Math.max(earliestTime, Math.min(positions[j], length - positions[j]));
+            }
+            
+            int latestTime = 0;
+            for (int j = 0; j < ants; j++) {
+                latestTime = Math.max(latestTime, Math.max(positions[j], length - positions[j]));
+            }
+            
+            System.out.println(earliestTime + " " + latestTime);
+        }
+        
+        scanner.close();
+    }
+}
